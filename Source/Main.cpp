@@ -13,22 +13,67 @@ struct Person
 {
     Person();
 
-    int age;
-    int height;
-    float hairLength;
-    float GPA;
-    unsigned int SATScore;
-    float distanceTraveled;
+    int age = 0;
+    int height = 0;
+    float hairLength = 0.f;
+    float GPA = 0.f;
+    unsigned int SATScore = 0;
+    float distanceTraveled = 0;
 };
 
-Person::Person()
+Person::Person() {}
+
+struct IntValue
 {
-    age = 0;
-    height = 0;
-    hairLength = 0.f;
-    GPA = 0.f;
-    SATScore = 0;
-    distanceTraveled = 0;
+    IntValue()
+    {
+        DBG("IntValue constructor");
+    }
+    ~IntValue()
+    {
+        DBG("IntValue destructor");
+    }
+    int value;
+};
+
+int functionA(int val)
+{
+    IntValue a;
+    a.value = 5;
+    return val * 2 + a.value;
+}
+
+void functionB()
+{
+    IntValue val;
+    val.value = functionA(3);
+    val.value *= 4;
+}
+
+void functionC()
+{
+    int i = 0;
+    while (i < 3)
+    {
+        IntValue a;
+        a.value += i;
+        i += 1;
+    }
+    for (int i = 0; i < 3; i += 1)
+    {
+        IntValue a;
+        a.value += i;
+    }
+}
+
+void whileTest()
+{
+    bool b = true;
+    while (b)
+    {
+        b = false;
+        DBG("b is " << (b ? "true" : "false"));
+    }
 }
 
 //==============================================================================
@@ -47,9 +92,7 @@ public:
     {
         // This method is where you should put your application's initialisation code..
 
-        Person person;
-        DBG ( person.age );
-
+        whileTest();
         mainWindow.reset (new MainWindow (getApplicationName()));
     }
 
