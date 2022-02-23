@@ -11,17 +11,30 @@
 
 struct Person
 {
-    Person();
-
     int age = 0;
     int height = 0;
     float hairLength = 0.f;
     float GPA = 0.f;
     unsigned int SATScore = 0;
     float distanceTraveled = 0;
+    std::string name;
+
+    Person(std::string personsName) : name(personsName)
+    {
+        DBG("Person constructor:" + name); 
+    }
+    ~Person() 
+    {
+        DBG("Person Destructor:" + name);
+    }
 };
 
-Person::Person() {}
+/*void  PersonFunction()
+{
+    Person p;
+}*/
+
+//Person::Person() {}
 
 struct IntValue
 {
@@ -76,6 +89,35 @@ void whileTest()
     }
 }
 
+struct Family
+{
+    Family() { DBG( "Family constructor" ); }
+    ~Family() { DBG( "Family Desctructor" ); }
+
+    Person mom{ "mom" };
+    Person dad{ "dad" };
+    Person child1{ "child1" };
+    Person child2{ "child2" };
+};
+
+void familyFunction()
+{
+    Family family;
+    //family.mom.age = 42;
+}
+
+/*struct ColorPickerWidget // EXAMPLE of Desctructor
+{
+    ColorPickerWidget()
+    {
+        loadsettingsFromDisk();
+    }
+    ~ColorPickerWidget()
+    {
+        saveSettingstoDisk(); 
+    }
+}*/
+
 //==============================================================================
 class HelloWorldApplication  : public juce::JUCEApplication
 {
@@ -92,7 +134,8 @@ public:
     {
         // This method is where you should put your application's initialisation code..
 
-        whileTest();
+        //whileTest();
+        familyFunction();
         mainWindow.reset (new MainWindow (getApplicationName()));
     }
 
