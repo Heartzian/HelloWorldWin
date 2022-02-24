@@ -19,6 +19,8 @@ struct Person
     float distanceTraveled = 0;
     std::string name;
 
+    int run(int howFast, bool startWithLeftFoot);
+
     Person(std::string personsName) : name(personsName)
     {
         DBG("Person constructor:" + name); 
@@ -28,6 +30,16 @@ struct Person
         DBG("Person Destructor:" + name);
     }
 };
+
+int Person::run(int howFast, bool startWithLeftFoot)
+{
+    if (startWithLeftFoot)
+    {
+        return leftFoot.stepForward() + rightFoot.stepForward();
+    }
+
+    return rightFoot.stepForward() + leftFoot.stepForward();
+}
 
 /*void  PersonFunction()
 {
